@@ -1,0 +1,35 @@
+defaults:
+  - _self_
+
+project:
+  name: welc_neural_acceleration
+  seed: 42
+  output_dir: ./models_artifacts
+
+model:
+  weight_mode: binary      # binary | ternary
+  num_classes: 10
+  binarization_loss_weight: 0.1
+  warmup_epochs: 5
+
+training:
+  batch_size: 128
+  max_epochs: 100
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  gradient_clip_val: 1.0
+  early_stopping_patience: 20
+  precision: 16-mixed
+
+data:
+  data_dir: ./data
+  num_workers: 4
+  image_size: 32
+
+mlflow:
+  experiment_name: welc_neural_acceleration
+  run_name: binary_baseline
+
+api:
+  host: 0.0.0.0
+  port: 8003

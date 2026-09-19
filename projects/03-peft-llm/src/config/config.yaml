@@ -1,0 +1,42 @@
+defaults:
+  - _self_
+project:
+  name: peft_llm
+  seed: 42
+  output_dir: ./models_artifacts
+model:
+  base_model: microsoft/phi-2
+  peft_method: lora
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj, k_proj, o_proj]
+  bias: none
+prefix_tuning:
+  num_virtual_tokens: 20
+ia3:
+  target_modules: [k_proj, v_proj, down_proj]
+  feedforward_modules: [down_proj]
+data:
+  max_seq_length: 512
+  val_split: 0.1
+  num_workers: 4
+training:
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  max_epochs: 3
+  learning_rate: 2e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  lr_scheduler: cosine
+  precision: 16-mixed
+  early_stopping_patience: 3
+  eval_steps: 500
+mlflow:
+  experiment_name: peft_llm_finetuning
+  run_name: lora_baseline
+api:
+  host: 0.0.0.0
+  port: 8002

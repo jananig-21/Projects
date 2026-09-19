@@ -1,0 +1,48 @@
+defaults:
+  - _self_
+
+project:
+  name: kolmogorov_arnold_networks
+  seed: 42
+  output_dir: ./models_artifacts
+
+model:
+  architecture: KAN         # KAN | KAN_Residual | KAN_Ensemble
+  layer_sizes: [2, 8, 8, 1] # input_dim → hidden... → output_dim
+  grid_size: 5              # B-spline grid points
+  spline_order: 3           # B-spline order (cubic)
+  base_activation: silu
+  grid_range: [-1.0, 1.0]
+  scale_noise: 0.1
+  scale_base: 1.0
+  scale_spline: 1.0
+  dropout: 0.0
+
+training:
+  batch_size: 256
+  max_epochs: 200
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  gradient_clip_val: 1.0
+  early_stopping_patience: 30
+  precision: 32             # KAN gradients can be unstable with fp16
+  lr_scheduler: cosine_with_restarts
+  T_0: 50
+  T_mult: 2
+
+data:
+  task: regression          # regression | classification | symbolic
+  dataset: synthetic        # synthetic | california_housing | iris
+  num_samples: 10000
+  noise_std: 0.1
+  val_split: 0.2
+  test_split: 0.1
+  num_workers: 4
+
+mlflow:
+  experiment_name: kolmogorov_arnold_networks
+  run_name: kan_baseline
+
+api:
+  host: 0.0.0.0
+  port: 8004
