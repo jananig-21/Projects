@@ -1,0 +1,36 @@
+defaults:
+  - _self_
+project:
+  name: fir_quantum_error_estimation
+  seed: 42
+  output_dir: ./models_artifacts
+quantum:
+  num_qubits: 4
+  num_shots: 1024
+  noise_prob: 0.01
+fir:
+  order: 32
+  window: hamming
+model:
+  hidden_dims: [256, 128, 64]
+  dropout: 0.2
+training:
+  batch_size: 64
+  max_epochs: 100
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  gradient_clip_val: 1.0
+  early_stopping_patience: 15
+  warmup_steps: 100
+  precision: 16-mixed
+data:
+  num_samples: 50000
+  val_split: 0.15
+  test_split: 0.15
+  num_workers: 4
+mlflow:
+  experiment_name: fir_quantum_error_estimation
+  run_name: baseline
+api:
+  host: 0.0.0.0
+  port: 8000

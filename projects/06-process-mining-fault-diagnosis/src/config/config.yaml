@@ -1,0 +1,63 @@
+defaults:
+  - _self_
+
+project:
+  name: process_mining_fault_diagnosis
+  seed: 42
+  output_dir: ./models_artifacts
+
+cps:
+  num_sensors: 20
+  window_size: 50
+  fault_classes: 5
+  sampling_rate_hz: 100
+  fault_types:
+    - normal
+    - bearing_fault
+    - gear_fault
+    - rotor_imbalance
+    - sensor_drift
+
+process_mining:
+  discovery_algorithm: alpha          # alpha | heuristics | inductive
+  conformance_method: token_replay
+  min_activity_freq: 5
+  dependency_threshold: 0.5
+  dfg_noise_threshold: 0.0
+
+model:
+  architecture: ProcessAwareTransformer
+  d_model: 128
+  nhead: 8
+  num_encoder_layers: 4
+  num_decoder_layers: 2
+  dim_feedforward: 512
+  dropout: 0.1
+  max_seq_len: 512
+  process_embedding_dim: 64
+
+training:
+  batch_size: 64
+  max_epochs: 100
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  gradient_clip_val: 1.0
+  early_stopping_patience: 15
+  precision: 16-mixed
+  warmup_steps: 200
+
+data:
+  num_samples: 20000
+  val_split: 0.15
+  test_split: 0.15
+  num_workers: 4
+  augment_faults: true
+  imbalance_strategy: oversample      # oversample | class_weights | focal_loss
+
+mlflow:
+  experiment_name: process_mining_fault_diagnosis
+  run_name: pat_baseline
+
+api:
+  host: 0.0.0.0
+  port: 8005
