@@ -7,6 +7,8 @@ plus real-world datasets (California Housing, Iris, etc.).
 
 from __future__ import annotations
 
+from typing import Optional
+
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader, random_split
@@ -54,7 +56,6 @@ class FunctionApproximationDataset(Dataset):
         input_range: tuple[float, float] = (-1.0, 1.0),
         seed: int = 42,
     ) -> None:
-        from typing import Optional as Opt
         rng = np.random.default_rng(seed)
         fn = BENCHMARK_FUNCTIONS[function_name]
 
