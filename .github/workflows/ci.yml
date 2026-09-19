@@ -27,6 +27,19 @@ jobs:
       - name: Lint for real errors (syntax, undefined names, bad comparisons)
         run: ruff check --select E9,F63,F7,F82 projects
 
+      - name: Guard against .gitignore silently shrinking lint coverage
+        run: |
+          # ruff honours .gitignore, so an over-broad ignore rule can hide files
+          # from the linter without failing anything. Compare what ruff sees
+          # against what git actually tracks.
+          linted=$(ruff check projects --select E9 --show-files | grep -c '\.py$')
+          tracked=$(git ls-files 'projects/**/*.py' | wc -l)
+          echo "ruff sees $linted files; git tracks $tracked"
+          if [ "$linted" -ne "$tracked" ]; then
+            echo "::error::ruff linted $linted files but git tracks $tracked - check .gitignore"
+            exit 1
+          fi
+
       - name: Validate Hydra configs and compose files
         run: |
           python - <<'PY'
