@@ -1,0 +1,28 @@
+{
+  "problem": "P1",
+  "init": "random",
+  "optimizer": "SLSQP",
+  "trial": 2,
+  "seed": 2,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 5.793880462646484,
+  "evaluations": 127,
+  "budget_hit": false,
+  "driver_eval_count": 127,
+  "min_energy": 3.654168754168301,
+  "min_eval_idx": 29,
+  "optimizer_settings": {
+    "type": "SLSQP",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": 10000,
+      "disp": false,
+      "ftol": 1e-06,
+      "eps": 0.1
+    },
+    "tol": null,
+    "fd_eps_note": 0.1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "problem": "P1",
+  "init": "random",
+  "optimizer": "AQGD",
+  "trial": 3,
+  "seed": 3,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 134.28696393966675,
+  "evaluations": 999,
+  "budget_hit": true,
+  "driver_eval_count": 999,
+  "min_energy": 3.4422130253801035,
+  "min_eval_idx": 44,
+  "optimizer_settings": {
+    "type": "AQGD",
+    "maxiter": [
+      10000
+    ],
+    "eta": [
+      0.01
+    ],
+    "momentum": [
+      0.25
+    ],
+    "param_tol": 1e-06,
+    "tol": 1e-06,
+    "averaging": 10,
+    "fd_eps_note": 0.1
+  }
+}

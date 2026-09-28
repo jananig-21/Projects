@@ -1,0 +1,28 @@
+{
+  "problem": "P1",
+  "init": "random",
+  "optimizer": "L_BFGS_B",
+  "trial": 2,
+  "seed": 2,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 4.995392084121704,
+  "evaluations": 115,
+  "budget_hit": false,
+  "driver_eval_count": 115,
+  "min_energy": 3.7025624842284177,
+  "min_eval_idx": 101,
+  "optimizer_settings": {
+    "type": "L_BFGS_B",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxfun": 1000,
+      "maxiter": 10000,
+      "ftol": 2.220446049250313e-15,
+      "iprint": -1,
+      "eps": 0.1
+    },
+    "fd_eps_note": 0.1
+  }
+}

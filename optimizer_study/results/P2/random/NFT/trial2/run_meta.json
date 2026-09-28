@@ -1,0 +1,27 @@
+{
+  "problem": "P2",
+  "init": "random",
+  "optimizer": "NFT",
+  "trial": 2,
+  "seed": 1002,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 2860.0360021591187,
+  "evaluations": 1000,
+  "budget_hit": true,
+  "driver_eval_count": 1000,
+  "min_energy": 17.641902743359026,
+  "min_eval_idx": 72,
+  "optimizer_settings": {
+    "type": "NFT",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": 10000,
+      "maxfev": 1000,
+      "disp": false,
+      "reset_interval": 32
+    },
+    "fd_eps_note": 0.1
+  }
+}

@@ -1,0 +1,11 @@
+# QAOA environment for the optimizer study, Python 3.8.
+# The first three lines are the team's own pins (requirements.txt on quantumdb-spiq-joo);
+# scikit-quant adds BOBYQA. The remaining lines record the exact resolved versions used.
+qiskit==0.34.2
+qiskit-optimization==0.3.2
+docplex==2.23.222
+scikit-quant==0.8.2
+qiskit-terra==0.19.2
+qiskit-aer==0.10.3
+numpy==1.24.4
+scipy==1.10.1

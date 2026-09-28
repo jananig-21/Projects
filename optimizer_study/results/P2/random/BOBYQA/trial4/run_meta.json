@@ -1,0 +1,21 @@
+{
+  "problem": "P2",
+  "init": "random",
+  "optimizer": "BOBYQA",
+  "trial": 4,
+  "seed": 1004,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 2811.1260657310486,
+  "evaluations": 1000,
+  "budget_hit": false,
+  "driver_eval_count": 1000,
+  "min_energy": 18.437340253375446,
+  "min_eval_idx": 980,
+  "optimizer_settings": {
+    "type": "BOBYQA",
+    "maxiter": 1000,
+    "fd_eps_note": 0.1
+  }
+}

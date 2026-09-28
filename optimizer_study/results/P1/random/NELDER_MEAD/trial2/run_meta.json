@@ -1,0 +1,29 @@
+{
+  "problem": "P1",
+  "init": "random",
+  "optimizer": "NELDER_MEAD",
+  "trial": 2,
+  "seed": 2,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 35.81912541389465,
+  "evaluations": 1000,
+  "budget_hit": false,
+  "driver_eval_count": 1000,
+  "min_energy": 3.5235485914795843,
+  "min_eval_idx": 112,
+  "optimizer_settings": {
+    "type": "NELDER_MEAD",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": null,
+      "maxfev": 1000,
+      "disp": false,
+      "xatol": 0.0001,
+      "adaptive": false
+    },
+    "tol": null,
+    "fd_eps_note": 0.1
+  }
+}

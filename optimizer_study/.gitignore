@@ -1,0 +1,6 @@
+# regenerable / machine-local
+cache/
+logs/
+.claims/
+analysis/trajectories.csv
+__pycache__/

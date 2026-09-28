@@ -1,0 +1,238 @@
+{
+  "P1": {
+    "input_idx": 0,
+    "card": [
+      10,
+      15,
+      20
+    ],
+    "pred": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "pred_sel": [
+      0.1,
+      0.1
+    ],
+    "num_qubits": 5,
+    "penalty_weight": 1,
+    "ground_state_energy": 1.031008131515815,
+    "num_ground_states": 1,
+    "mean_energy_uniform": 4.064439225097297,
+    "max_energy": 13.09037222002324,
+    "optimal_cost": 15.0,
+    "worst_cost": 200,
+    "distinct_plan_costs": [
+      15,
+      30,
+      200
+    ],
+    "optimal_orders": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        2
+      ]
+    ],
+    "ground_state_decodes_to": [
+      {
+        "raw": [
+          1,
+          0,
+          2
+        ],
+        "raw_cost": 15.0,
+        "fallback": [
+          1,
+          0,
+          2
+        ],
+        "fallback_cost": 15.0
+      }
+    ]
+  },
+  "P2": {
+    "input_idx": 1,
+    "card": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "pred": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "pred_sel": [
+      0.1,
+      0.1
+    ],
+    "num_qubits": 12,
+    "penalty_weight": 2,
+    "ground_state_energy": 4.7663812992543555,
+    "num_ground_states": 1,
+    "mean_energy_uniform": 20.492652852483772,
+    "max_energy": 70.54451884233566,
+    "optimal_cost": 315.0,
+    "worst_cost": 1350.0,
+    "distinct_plan_costs": [
+      315,
+      465,
+      500,
+      600,
+      660,
+      750,
+      800,
+      900,
+      960,
+      1200,
+      1350
+    ],
+    "optimal_orders": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        0,
+        2,
+        3
+      ]
+    ],
+    "ground_state_decodes_to": [
+      {
+        "raw": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "raw_cost": 465.0,
+        "fallback": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "fallback_cost": 465.0
+      }
+    ]
+  },
+  "P3": {
+    "input_idx": 2,
+    "card": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "pred": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "pred_sel": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "num_qubits": 20,
+    "penalty_weight": 2,
+    "ground_state_energy": 2.724994312720294,
+    "num_ground_states": 1,
+    "mean_energy_uniform": 25.799857164004685,
+    "max_energy": 93.75271807597385,
+    "optimal_cost": 39.0,
+    "worst_cost": 990.0,
+    "distinct_plan_costs": [
+      39,
+      84,
+      104,
+      240,
+      375,
+      440,
+      510,
+      540,
+      600,
+      675,
+      720,
+      990
+    ],
+    "optimal_orders": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        0,
+        2,
+        3
+      ]
+    ],
+    "ground_state_decodes_to": [
+      {
+        "raw": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "raw_cost": 39.0,
+        "fallback": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "fallback_cost": 39.0
+      }
+    ]
+  }
+}
