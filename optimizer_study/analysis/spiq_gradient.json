@@ -1,0 +1,24 @@
+{
+  "P1": {
+    "angles": 40,
+    "energy_at_spiq": 1.560813594902637,
+    "grad_norm": 3.233018248352212e-15,
+    "grad_max_abs": 1.5543122344752192e-15,
+    "curvature_min": 0.2385606273598304,
+    "n_uphill": 40,
+    "n_flat": 0,
+    "n_downhill": 0,
+    "grad_norm_nearby_random_point": 1.7155934309275005
+  },
+  "P2": {
+    "angles": 116,
+    "energy_at_spiq": 8.338032071621772,
+    "grad_norm": 1.4293878915544306e-14,
+    "grad_max_abs": 4.440892098500626e-15,
+    "curvature_min": -7.105427357601002e-15,
+    "n_uphill": 93,
+    "n_flat": 23,
+    "n_downhill": 0,
+    "grad_norm_nearby_random_point": 4.681677353351599
+  }
+}

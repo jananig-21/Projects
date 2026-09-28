@@ -12,6 +12,8 @@ only the optimizer is swapped.**
 
 ---
 
+> **Proof of each finding** (numbers, figures and a script that re-checks them): **[EVIDENCE.md](EVIDENCE.md)**
+
 ## 1. Key findings
 
 1. **The harness reproduces the team's numbers.** Running their unmodified driver with COBYLA gives
@@ -23,14 +25,16 @@ only the optimizer is swapped.**
    (36 %) beat COBYLA (25 %). Cheap is not bad: **SLSQP** closes 56 % of P1's gap in just 84 evaluations.
    But none of the 10 optimizers gets near the ground state with depth-2 QAOA from this start.
 
-3. **From the SPIQ start, 7 of 10 optimizers, COBYLA included, close at most 1.2 % of the gap on any problem.** The
+3. **From the SPIQ start, 6 of 10 optimizers, COBYLA included, close at most 1 % of the gap on every problem**
+   (BOBYQA manages 1.2 %, on P3 only). The
    SPIQ starting point is already better than anything the random start reaches (P1: 1.56 vs the best
    random result, 2.22). But the exact energy of what COBYLA returns is unchanged from the start on all three
    problems (P1 +0.009, P2 +0.001, P3 +0.005). The team's logged decrease (e.g. P2 8.33 → 8.27) is
    **shot-noise selection**: the best of ~2,000 noisy 10,240-shot readings, not a better quantum state.
 
 4. **Three optimizers *do* escape the SPIQ point, each on a different problem.**
-   **SPSA on P1** takes the optimal-plan ratio from 0.50 to **0.98** (energy 1.56 → 1.17, ground state 1.03).
+   **SPSA on P1** lowers the energy in all three trials (1.56 → 1.08–1.20, ground state 1.03) and takes
+   the optimal-plan ratio from 0.50 to **0.98–0.99 in two of the three** (the third stays at 0.50).
    **Adam on P1** takes it to 0.76. **NFT on P3** delivers the largest real energy drop in the study,
    **9.87 → 6.38**. But SPSA is **unsafe** on the larger problems: it wrecks the SPIQ state on P2 (+3.0)
    and P3 (+8.1).
