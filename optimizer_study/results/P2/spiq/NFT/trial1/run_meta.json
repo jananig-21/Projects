@@ -1,0 +1,27 @@
+{
+  "problem": "P2",
+  "init": "spiq",
+  "optimizer": "NFT",
+  "trial": 1,
+  "seed": 1101,
+  "budget": 2500,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 640.9815227985382,
+  "evaluations": 2500,
+  "budget_hit": true,
+  "driver_eval_count": 2500,
+  "min_energy": 8.299473503365471,
+  "min_eval_idx": 83,
+  "optimizer_settings": {
+    "type": "NFT",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": 10000,
+      "maxfev": 2500,
+      "disp": false,
+      "reset_interval": 32
+    },
+    "fd_eps_note": 0.1
+  }
+}

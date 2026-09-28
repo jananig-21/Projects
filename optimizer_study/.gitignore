@@ -4,3 +4,7 @@ logs/
 .claims/
 analysis/trajectories.csv
 __pycache__/
+
+# The repository root .gitignore ignores "spiq/" (the SPIQ virtualenv); that would also
+# swallow results/<problem>/spiq/. Re-include our result folders.
+!spiq/

@@ -1,0 +1,28 @@
+{
+  "problem": "P2",
+  "init": "spiq",
+  "optimizer": "POWELL",
+  "trial": 2,
+  "seed": 1102,
+  "budget": 2500,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 503.29145884513855,
+  "evaluations": 2111,
+  "budget_hit": false,
+  "driver_eval_count": 2111,
+  "min_energy": 8.308831900202357,
+  "min_eval_idx": 76,
+  "optimizer_settings": {
+    "type": "POWELL",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": null,
+      "maxfev": 2500,
+      "disp": false,
+      "xtol": 0.0001
+    },
+    "tol": null,
+    "fd_eps_note": 0.1
+  }
+}

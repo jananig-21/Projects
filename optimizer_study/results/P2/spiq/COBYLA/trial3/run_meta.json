@@ -1,0 +1,27 @@
+{
+  "problem": "P2",
+  "init": "spiq",
+  "optimizer": "COBYLA",
+  "trial": 3,
+  "seed": 1103,
+  "budget": 2500,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 522.4712948799133,
+  "evaluations": 2225,
+  "budget_hit": false,
+  "driver_eval_count": 2225,
+  "min_energy": 8.270878227264918,
+  "min_eval_idx": 617,
+  "optimizer_settings": {
+    "type": "COBYLA",
+    "max_evals_grouped": 1,
+    "options": {
+      "maxiter": 10000,
+      "disp": false,
+      "rhobeg": 2.0
+    },
+    "tol": 1e-12,
+    "fd_eps_note": 0.1
+  }
+}

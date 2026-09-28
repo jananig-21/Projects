@@ -1,0 +1,32 @@
+{
+  "problem": "P3",
+  "init": "spiq",
+  "optimizer": "AQGD",
+  "trial": 1,
+  "seed": 2101,
+  "budget": 1500,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 1327.4645125865936,
+  "evaluations": 1500,
+  "budget_hit": true,
+  "driver_eval_count": 1500,
+  "min_energy": 9.798760856766117,
+  "min_eval_idx": 1058,
+  "optimizer_settings": {
+    "type": "AQGD",
+    "maxiter": [
+      10000
+    ],
+    "eta": [
+      0.01
+    ],
+    "momentum": [
+      0.25
+    ],
+    "param_tol": 1e-06,
+    "tol": 1e-06,
+    "averaging": 10,
+    "fd_eps_note": 0.1
+  }
+}
