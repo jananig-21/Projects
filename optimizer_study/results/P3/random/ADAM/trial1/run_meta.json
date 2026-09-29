@@ -1,0 +1,29 @@
+{
+  "problem": "P3",
+  "init": "random",
+  "optimizer": "ADAM",
+  "trial": 1,
+  "seed": 2001,
+  "budget": 1000,
+  "reps": 2,
+  "shots": 10240,
+  "wall_time_s": 40338.67660737038,
+  "evaluations": 1000,
+  "budget_hit": true,
+  "driver_eval_count": 1000,
+  "min_energy": 25.024731437135237,
+  "min_eval_idx": 92,
+  "optimizer_settings": {
+    "type": "ADAM",
+    "maxiter": 10000,
+    "tol": 1e-06,
+    "lr": 0.05,
+    "beta_1": 0.9,
+    "beta_2": 0.99,
+    "noise_factor": 1e-08,
+    "eps": 0.1,
+    "amsgrad": false,
+    "snapshot_dir": null,
+    "fd_eps_note": 0.1
+  }
+}

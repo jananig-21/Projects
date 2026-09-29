@@ -5,10 +5,7 @@ database join ordering. The team's own code, problems and SPIQ initializations a
 only the optimizer is swapped.**
 
 > [!NOTE]
-> **Interim results, updated Sep 28, 2026.** P1, P2 and P3's SPIQ arm are complete
-> (181 of 210 runs). P3's *random-start* arm (20 qubits, ~35 s per evaluation through qiskit's stock QAOA
-> path) is still running: 1 of 30 cells is in. Everything shown for P3 · random init is therefore
-> provisional, and this page will be regenerated when the remaining runs finish.
+> **Snapshot of Sep 29, 2026: 195 of 210 runs.** P1, P2 and P3's SPIQ arm are complete. P3's *random-start* arm (20 qubits, ~35 s per evaluation through qiskit's stock QAOA path) has 15 of 30 runs; trials per optimizer: ADAM 1, AQGD 2, BOBYQA 1, COBYLA 2, L_BFGS_B 2, NELDER_MEAD 1, NFT 1, POWELL 2, SLSQP 2, SPSA 1. The remaining runs are still computing, and this page will be regenerated when they finish.
 
 ---
 
@@ -226,16 +223,16 @@ Median over trials. **Gap closed** = fraction of the distance from the starting 
 | Rank | Optimizer | Gap closed P1 | Gap closed P2 | Gap closed P3 | P(opt) P1 | P(opt) P2 | P(opt) P3 | Evals (median, all problems) | Trials |
 |---|---|---|---|---|---|---|---|---|---|
 | – | *start (before optimizing)* | 0.00 | 0.00 | 0.00 | 0.197 | 0.060 | 0.160 | – | – |
-| 1 | **Powell** | 0.71 | 0.29 | – | 0.495 | 0.098 | – | 307 | P1 5 · P2 5 |
-| 2 | **NFT** | 0.55 | 0.36 | – | 0.453 | 0.109 | – | 1000 | P1 5 · P2 5 |
-| 3 | **SPSA** | 0.51 | 0.30 | – | 0.435 | 0.109 | – | 1000 | P1 5 · P2 5 |
-| 4 | **SLSQP** | 0.56 | 0.22 | – | 0.448 | 0.074 | – | 80 | P1 5 · P2 5 |
-| 5 | **COBYLA** | 0.40 | 0.25 | 0.48 | 0.470 | 0.102 | 0.132 | 116 | P1 5 · P2 5 · P3 1 |
-| 6 | **Adam** | 0.35 | 0.40 | – | 0.352 | 0.126 | – | 1000 | P1 5 · P2 5 |
-| 7 | **BOBYQA** | 0.40 | 0.31 | – | 0.336 | 0.091 | – | 1000 | P1 5 · P2 5 |
-| 8 | **AQGD** | 0.39 | 0.22 | – | 0.354 | 0.107 | – | 999 | P1 5 · P2 5 |
-| 9 | **L-BFGS-B** | 0.32 | 0.22 | – | 0.363 | 0.077 | – | 60 | P1 5 · P2 5 |
-| 10 | **Nelder–Mead** | 0.37 | 0.11 | – | 0.335 | 0.062 | – | 1000 | P1 5 · P2 5 |
+| 1 | **Powell** | 0.71 | 0.29 | 0.50 | 0.495 | 0.098 | 0.133 | 334 | P1 5 · P2 5 · P3 2 |
+| 2 | **COBYLA** | 0.40 | 0.25 | 0.48 | 0.470 | 0.102 | 0.134 | 116 | P1 5 · P2 5 · P3 2 |
+| 3 | **NFT** | 0.55 | 0.36 | 0.20 | 0.453 | 0.109 | 0.159 | 1000 | P1 5 · P2 5 · P3 1 |
+| 4 | **SPSA** | 0.51 | 0.30 | 0.20 | 0.435 | 0.109 | 0.148 | 1000 | P1 5 · P2 5 · P3 1 |
+| 5 | **SLSQP** | 0.56 | 0.22 | 0.20 | 0.448 | 0.074 | 0.154 | 76 | P1 5 · P2 5 · P3 2 |
+| 6 | **Adam** | 0.35 | 0.40 | 0.20 | 0.352 | 0.126 | 0.155 | 1000 | P1 5 · P2 5 · P3 1 |
+| 7 | **BOBYQA** | 0.40 | 0.31 | 0.24 | 0.336 | 0.091 | 0.158 | 1000 | P1 5 · P2 5 · P3 1 |
+| 8 | **AQGD** | 0.39 | 0.22 | 0.20 | 0.354 | 0.107 | 0.159 | 999 | P1 5 · P2 5 · P3 2 |
+| 9 | **L-BFGS-B** | 0.32 | 0.22 | 0.18 | 0.363 | 0.077 | 0.153 | 60 | P1 5 · P2 5 · P3 2 |
+| 10 | **Nelder–Mead** | 0.37 | 0.11 | 0.17 | 0.335 | 0.062 | 0.157 | 1000 | P1 5 · P2 5 · P3 1 |
 
 ### Leaderboard — SPIQ initialization (the team's method)
 
@@ -399,7 +396,16 @@ without changing the state (§6.2).
 | Init | Optimizer | Exact energy, median [min–max] | Gap closed | P(opt) raw | P(opt) fallback | E[plan cost] fallback | Evals | Budget hit | Wall time (s) |
 |---|---|---|---|---|---|---|---|---|---|
 | random | *start* | 30.692 | 0.00 | 0.020 | 0.160 | 314 | – | – | – |
-| random | COBYLA | 17.248 [17.248–17.248] | 0.48 | 0.041 | 0.132 | 318 | 123 | 0/1 | 4262 |
+| random | Powell | 16.577 [16.382–16.772] | 0.50 | 0.046 | 0.133 | 319 | 363 | 0/2 | 17384 |
+| random | COBYLA | 17.203 [17.158–17.248] | 0.48 | 0.041 | 0.134 | 317 | 120 | 0/2 | 4361 |
+| random | BOBYQA | 24.001 [24.001–24.001] | 0.24 | 0.025 | 0.158 | 311 | 1000 | 0/1 | 43743 |
+| random | SPSA | 25.000 [25.000–25.000] | 0.20 | 0.021 | 0.148 | 320 | 1000 | 1/1 | 47187 |
+| random | SLSQP | 25.045 [24.901–25.189] | 0.20 | 0.026 | 0.154 | 318 | 61 | 0/2 | 4423 |
+| random | AQGD | 25.123 [25.073–25.174] | 0.20 | 0.023 | 0.159 | 320 | 999 | 2/2 | 42070 |
+| random | Adam | 25.158 [25.158–25.158] | 0.20 | 0.024 | 0.155 | 316 | 1000 | 1/1 | 40339 |
+| random | NFT | 25.191 [25.191–25.191] | 0.20 | 0.022 | 0.159 | 321 | 1000 | 1/1 | 39008 |
+| random | L-BFGS-B | 25.627 [25.502–25.752] | 0.18 | 0.026 | 0.153 | 317 | 62 | 0/2 | 4888 |
+| random | Nelder–Mead | 25.903 [25.903–25.903] | 0.17 | 0.022 | 0.157 | 319 | 1000 | 0/1 | 47458 |
 | spiq | *start* | 9.867 | 0.00 | 0.500 | 0.750 | 55 | – | – | – |
 | spiq | NFT | 6.382 [6.377–6.387] | 0.49 | 0.246 | 0.628 | 64 | 1500 | 2/2 | 1867 |
 | spiq | BOBYQA | 9.780 [9.780–9.780] | 0.01 | 0.500 | 0.748 | 55 | 1500 | 0/2 | 2690 |
@@ -411,7 +417,6 @@ without changing the state (§6.2).
 | spiq | COBYLA | 9.871 [9.871–9.872] | -0.00 | 0.500 | 0.754 | 55 | 1500 | 2/2 | 1448 |
 | spiq | L-BFGS-B | 9.887 [9.875–9.898] | -0.00 | 0.498 | 0.752 | 55 | 1500 | 2/2 | 3111 |
 | spiq | SPSA | 17.923 [17.906–17.941] | -1.13 | 0.158 | 0.374 | 186 | 1500 | 2/2 | 9762 |
-
 
 ---
 
