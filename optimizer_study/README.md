@@ -425,7 +425,7 @@ is an exact sinusoid in each angle. Evaluating those sinusoids exactly at the te
 |---|---|---|---|---|
 | P1 | 40 | 3 × 10⁻¹⁵ (zero) | 1.72 | > 0 on all 40, a strict minimum along every angle |
 | P2 | 116 | 1 × 10⁻¹⁴ (zero) | 4.68 | ≥ 0 on all, 23 of them exactly flat |
-| P3 | 268 | 2 × 10⁻¹⁴ (zero) | 2.95 | ≥ 0 on all, some exactly flat |
+| P3 | 268 | 2 × 10⁻¹⁴ (zero) | 3.19 | ≥ 0 on all, 22 of them exactly flat |
 
 So the SPIQ point is an **exact stationary point that no single angle can improve**. That accounts for
 the stall: COBYLA, BOBYQA, Powell, Nelder–Mead, L-BFGS-B and SLSQP all make local moves that start

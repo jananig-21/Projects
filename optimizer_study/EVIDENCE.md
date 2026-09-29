@@ -69,10 +69,9 @@ quantum state has not changed at all.
 |---|---|---|---|---|
 | P1 | 40 | 3 × 10⁻¹⁵ (zero) | 1.72 | 40 / 0 / **0** |
 | P2 | 116 | 1 × 10⁻¹⁴ (zero) | 4.68 | 93 / 23 / **0** |
-| P3 | 268 | 2 × 10⁻¹⁴ (zero) | 2.95 | flat or uphill on all; **0** downhill* |
+| P3 | 268 | 2 × 10⁻¹⁴ (zero) | 3.19 | 246 / 22 / **0** |
 
-\*P3 was measured once during the study; the saved, script-generated re-run
-([`analysis/spiq_gradient.json`](https://github.com/jananig-21/Projects/blob/quantumdb-optimizer-study/optimizer_study/analysis/spiq_gradient.json)) is being added.
+All three rows come from [`analysis/spiq_gradient.json`](https://github.com/jananig-21/Projects/blob/quantumdb-optimizer-study/optimizer_study/analysis/spiq_gradient.json).
 
 Because each angle drives exactly one gate, the energy along each angle is an exact sine wave, so these
 numbers are exact, not estimates ([`measure_spiq_gradient.py`](https://github.com/jananig-21/Projects/blob/quantumdb-optimizer-study/optimizer_study/measure_spiq_gradient.py)).
@@ -173,7 +172,8 @@ FINDING 2 - from the SPIQ start, COBYLA and most others do not improve anything
    [PASS] P1: gradient is zero (< 1e-10) and NO single angle goes downhill
    P2: 116 angles | |grad| = 1.4e-14 (vs 4.68 at a nearby random point) | single-angle directions: 93 uphill, 23 flat, 0 downhill
    [PASS] P2: gradient is zero (< 1e-10) and NO single angle goes downhill
-   P3: (not measured yet)
+   P3: 268 angles | |grad| = 2.0e-14 (vs 3.19 at a nearby random point) | single-angle directions: 246 uphill, 22 flat, 0 downhill
+   [PASS] P3: gradient is zero (< 1e-10) and NO single angle goes downhill
  (d) How many optimizers improve on the SPIQ start (gap closed, median):
 problem         P1     P2     P3
    optimizer                       
@@ -214,6 +214,6 @@ FINDING 4 - on P2 the QUBO's ground state is NOT the optimal join order (team's 
    SPIQ's P2 start: probability on the ground state 0.25, probability of an optimal plan 0.000
 
 ====================================================================================================
-SUMMARY: 14 of 14 checks PASS
+SUMMARY: 15 of 15 checks PASS
 ```
 </details>

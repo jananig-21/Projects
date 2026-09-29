@@ -31,7 +31,8 @@ FINDING 2 - from the SPIQ start, COBYLA and most others do not improve anything
    [PASS] P1: gradient is zero (< 1e-10) and NO single angle goes downhill
    P2: 116 angles | |grad| = 1.4e-14 (vs 4.68 at a nearby random point) | single-angle directions: 93 uphill, 23 flat, 0 downhill
    [PASS] P2: gradient is zero (< 1e-10) and NO single angle goes downhill
-   P3: (not measured yet)
+   P3: 268 angles | |grad| = 2.0e-14 (vs 3.19 at a nearby random point) | single-angle directions: 246 uphill, 22 flat, 0 downhill
+   [PASS] P3: gradient is zero (< 1e-10) and NO single angle goes downhill
  (d) How many optimizers improve on the SPIQ start (gap closed, median):
 problem         P1     P2     P3
    optimizer                       
@@ -72,4 +73,4 @@ FINDING 4 - on P2 the QUBO's ground state is NOT the optimal join order (team's 
    SPIQ's P2 start: probability on the ground state 0.25, probability of an optimal plan 0.000
 
 ====================================================================================================
-SUMMARY: 14 of 14 checks PASS
+SUMMARY: 15 of 15 checks PASS

@@ -20,5 +20,16 @@
     "n_flat": 23,
     "n_downhill": 0,
     "grad_norm_nearby_random_point": 4.681677353351599
+  },
+  "P3": {
+    "angles": 268,
+    "energy_at_spiq": 9.866711056613616,
+    "grad_norm": 1.9820512879339522e-14,
+    "grad_max_abs": 4.440892098500626e-15,
+    "curvature_min": -5.329070518200751e-15,
+    "n_uphill": 246,
+    "n_flat": 22,
+    "n_downhill": 0,
+    "grad_norm_nearby_random_point": 3.1940377695987463
   }
 }
