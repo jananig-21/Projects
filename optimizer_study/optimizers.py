@@ -61,6 +61,10 @@ class BudgetGuard:
     """
     active = False
     total_during_opt = 0
+    exec_count = 0            # circuit executions (one simulator seed each), incremented by the harness
+    checkpoint_path = None    # set by run_study.py: <run_dir>/checkpoint.jsonl
+    advance_rng = None        # set by run_study.py: draws n simulator seeds without executing
+    replayed_steps = 0
     exhausted = False
     budget = None
     settings = {}
@@ -93,6 +97,7 @@ class BudgetGuard:
 
     def minimize(self, fun, x0, jac=None, bounds=None):
         n = len(np.asarray(x0))
+        fun, restore = self._checkpointed(fun)
         best = {"x": np.asarray(x0, float), "f": np.inf}
         def tracked(x):
             f = fun(x)
@@ -120,4 +125,73 @@ class BudgetGuard:
             res.x, res.fun, res.nfev = best["x"], best["f"], BudgetGuard.total_during_opt
         finally:
             BudgetGuard.active = False
+            restore()
         return res
+
+    def _checkpointed(self, fun):
+        """Make a qiskit-VQE objective resumable after the process is killed.
+
+        Every completed objective call is appended to checkpoint.jsonl: the parameters, the
+        driver-callback records it produced (params, mean, std), the circuits it cost and its
+        return value. A restarted run REPLAYS that prefix: it returns the recorded values, invokes
+        the team's callback with the recorded arguments (so energy_per_iteration_*.csv is complete),
+        and advances the simulator-seed stream by the recorded number of executions - so the
+        continuation is identical to an uninterrupted run. If a replayed call's parameters do not
+        match the record, replay stops and the run continues live from there.
+        Applies only when the objective is a VQE energy evaluation (the random-start arm)."""
+        import json, os
+        vqe = None
+        for cell in (getattr(fun, "__closure__", None) or ()):
+            try:
+                obj = cell.cell_contents
+            except ValueError:
+                continue
+            if hasattr(obj, "_callback") and hasattr(obj, "_eval_count"):
+                vqe = obj
+        path = BudgetGuard.checkpoint_path
+        if vqe is None or path is None or vqe._callback is None:
+            return fun, (lambda: None)
+        entries = []
+        if os.path.exists(path):
+            for line in open(path):
+                try:
+                    entries.append(json.loads(line))
+                except ValueError:
+                    break                                   # a torn last line from a kill: ignore it
+        original_cb = vqe._callback
+        records = []
+        def recording_cb(eval_count, params, mean, std):
+            records.append([[float(v) for v in np.ravel(params)], float(np.real(mean)), float(np.real(std))])
+            return original_cb(eval_count, params, mean, std)
+        vqe._callback = recording_cb
+        state = {"i": 0, "replaying": bool(entries)}
+        out = open(path, "a")
+        def ck_fun(x):
+            xr = [float(v) for v in np.ravel(x)]
+            i = state["i"]
+            if state["replaying"] and i < len(entries):
+                e = entries[i]
+                if len(e["x"]) == len(xr) and np.allclose(e["x"], xr, rtol=0, atol=1e-12):
+                    state["i"] += 1; BudgetGuard.replayed_steps += 1
+                    BudgetGuard.advance_rng(e["n_exec"])
+                    BudgetGuard.exec_count += e["n_exec"]
+                    BudgetGuard.total_during_opt += e["ticks"]
+                    for p, m, sd in e["records"]:
+                        vqe._eval_count += 1
+                        original_cb(vqe._eval_count, np.array(p), m, sd)
+                    return np.array(e["ret"]) if isinstance(e["ret"], list) else e["ret"]
+                print(f"[checkpoint] replay diverged at step {i}; continuing live", flush=True)
+            state["replaying"] = False
+            del records[:]
+            e0, t0 = BudgetGuard.exec_count, BudgetGuard.total_during_opt
+            r = fun(x)
+            rv = [float(v) for v in np.ravel(r)] if np.ndim(r) else float(np.real(r))
+            out.write(json.dumps({"x": xr, "records": list(records), "n_exec": BudgetGuard.exec_count - e0,
+                                  "ticks": BudgetGuard.total_during_opt - t0, "ret": rv}) + "\n")
+            out.flush(); os.fsync(out.fileno())
+            state["i"] += 1
+            return r
+        def restore():
+            vqe._callback = original_cb
+            out.close()
+        return ck_fun, restore

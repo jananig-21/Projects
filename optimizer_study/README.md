@@ -9,6 +9,8 @@ only the optimizer is swapped.**
 
 ---
 
+> **New to the project? Start with [BRIEFING.md](BRIEFING.md)**, a full walkthrough of everything.
+>
 > **Proof of each finding** (numbers, figures and a script that re-checks them): **[EVIDENCE.md](EVIDENCE.md)**
 
 ## 1. Key findings
@@ -17,10 +19,11 @@ only the optimizer is swapped.**
    8.34 → 8.27 on P2 with SPIQ (team: 8.33 → 8.27) and 24.9 → 19.6 on P2 from the random start (team:
    24.8 → 19.7). Differences between optimizers below are therefore due to the optimizer, not the setup.
 
-2. **From the random start, the optimizer matters, and COBYLA is middling.** On P1, **Powell** closes
-   **71 %** of the gap to the ground state versus COBYLA's 40 %. On P2, **Adam** (40 %) and **NFT**
-   (36 %) beat COBYLA (25 %). Cheap is not bad: **SLSQP** closes 56 % of P1's gap in just 84 evaluations.
-   But none of the 10 optimizers gets near the ground state with depth-2 QAOA from this start.
+2. **From the random start, the optimizer matters.** On P1, **Powell** closes **71 %** of the gap to
+   the ground state versus COBYLA's 40 % (every Powell trial beats every COBYLA trial). On P2, **Adam**
+   (40 %) and **NFT** (36 %) beat COBYLA (25 %). On P3, **COBYLA (48 %) and Powell (50 %)** are the only
+   two that get far; the rest stall near 20 %. Cheap is not bad: **SLSQP** closes 56 % of P1's gap in 84
+   evaluations. None of the 10 optimizers gets near the ground state with depth-2 QAOA from this start.
 
 3. **From the SPIQ start, 6 of 10 optimizers, COBYLA included, close at most 1 % of the gap on every problem**
    (BOBYQA manages 1.2 %, on P3 only). The
@@ -40,7 +43,8 @@ only the optimizer is swapped.**
    state decodes to a plan costing 465, not the optimal 315. SPIQ's P2 start puts **25 % of its
    probability on that ground state yet produces the optimal plan 0 % of the time**. SPSA *raises* P2's energy
    yet *raises* its optimal-plan ratio (0.00 → 0.09). NFT *lowers* P3's energy yet *lowers* its optimal-plan
-   ratio (0.75 → 0.63). The QUBO's squared-log cost approximation and its penalty weighting, not the
+   ratio (0.75 → 0.63). And on P3 from the random start, no optimizer raises the optimal-plan ratio
+   (0.13–0.16 vs 0.16 at the start), even where the energy falls from 30.7 to ~16.6. The QUBO's squared-log cost approximation and its penalty weighting, not the
    optimizer, cap plan quality.
 
 6. **"Best energy seen" is the wrong yardstick for a noisy objective.** It rewards optimizers that just

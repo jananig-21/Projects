@@ -60,8 +60,9 @@ class _FreshSeedInstance(QuantumInstance):
     """QuantumInstance that re-seeds the simulator on every execute(): fresh shot noise per
     call (like an unseeded run) but the whole sequence is reproducible from the trial seed."""
     def execute(self, circuits, had_transpiled=False):
-        self._run_config.seed_simulator = int(_rng.integers(0, 2**31 - 1))
+        self._run_config.seed_simulator = int(_rng.integers(0, 2**31 - 1))    # same order as before
         BudgetGuard.tick(len(circuits) if isinstance(circuits, (list, tuple)) else 1)
+        BudgetGuard.exec_count += 1
         return super().execute(circuits, had_transpiled=had_transpiled)
 X.get_local_QASM_backend = lambda: _FreshSeedInstance(backend=QasmSimulator(), shots=SHOTS)
 
@@ -78,6 +79,9 @@ with contextlib.redirect_stdout(io.StringIO()):
 
 run_dir = os.path.join(a.out, a.problem, a.init, a.optimizer, f"trial{a.trial}")
 os.makedirs(run_dir, exist_ok=True)
+# resumability: completed optimizer steps are checkpointed and replayed after a kill (optimizers.py)
+BudgetGuard.checkpoint_path = os.path.join(run_dir, "checkpoint.jsonl")
+BudgetGuard.advance_rng = lambda k: [_rng.integers(0, 2**31 - 1) for _ in range(k)]
 
 t0 = time.time()
 if a.init == "random":
@@ -109,7 +113,7 @@ with contextlib.redirect_stdout(io.StringIO()):
 json.dump(dict(problem=a.problem, init=a.init, optimizer=a.optimizer, trial=a.trial, seed=SEED,
                budget=a.budget, reps=REPS, shots=SHOTS, wall_time_s=wall,
                evaluations=BudgetGuard.total_during_opt, budget_hit=BudgetGuard.exhausted,
-               driver_eval_count=used_eval,
+               driver_eval_count=used_eval, replayed_steps=BudgetGuard.replayed_steps,
                min_energy=None if min_state is None else min_state["min_energy"],
                min_eval_idx=None if min_state is None else min_state["min_eval_idx"],
                optimizer_settings=BudgetGuard.settings),
